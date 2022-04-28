@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import produtosService from "../Api/produtosService";
 
 const stateInitil = {
   sku: "",
@@ -10,13 +11,37 @@ const stateInitil = {
 export default class CadastroProdutos extends Component {
   state = stateInitil;
 
+  constructor() {
+    super();
+    this.service = new produtosService();
+  }
+
   handleChange = (event) => {
     const nomeCampo = event.target.name;
     this.setState({
       [nomeCampo]: event.target.value,
     });
-    console.log("eiii")
-  }
+    console.log("eiii");
+  };
+
+  onSubmit = (event) => {
+    const dadosProduto = {
+      sku: this.state.sku,
+      nome: this.state.nome,
+      preco: this.state.preco,
+      fornecedor: this.state.fornecedor,
+      descricao: this.state.descricao,
+    };
+
+    try {
+      this.service.salvar(dadosProduto);
+    } catch (erro) {
+      const errors = erro.errors;
+      this.setState({
+        errors: errors,
+      })
+    }
+  };
 
   render() {
     return (
@@ -24,7 +49,7 @@ export default class CadastroProdutos extends Component {
         <div className="card text-white bg-primary mb-3">
           <div className="card-header">Cadastro do mercadinho do Zé</div>
 
-          <div className="card-body">
+          <div className="card-body red">
             <div className="row">
               <div className="col-md-6">
                 <label htmlFor="sku">SKU</label>
@@ -67,7 +92,6 @@ export default class CadastroProdutos extends Component {
                 <input
                   type="text"
                   name="fornecedor"
-                  id="Fornecedor"
                   value={this.state.fornecedor}
                   onChange={this.handleChange}
                   className="form-control"
@@ -87,7 +111,9 @@ export default class CadastroProdutos extends Component {
                 />
               </div>
               <div className="col-md-12 mt-4">
-                <button className="btn btn-danger">Enviar</button>
+                <button className="btn btn-danger" onClick={this.onSubmit}>
+                  Enviar
+                </button>
               </div>
             </div>
           </div>
