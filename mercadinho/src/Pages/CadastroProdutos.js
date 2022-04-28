@@ -43,6 +43,10 @@ export default class CadastroProdutos extends Component {
     }
   };
 
+  clearAll = () => {
+    this.setState(stateInitil);
+  }
+
   render() {
     return (
       <div>
@@ -111,8 +115,11 @@ export default class CadastroProdutos extends Component {
                 />
               </div>
               <div className="col-md-12 mt-4">
-                <button className="btn btn-danger" onClick={this.onSubmit}>
+                <button className="btn btn-success mr-3" onClick={this.onSubmit}>
                   Enviar
+                </button>
+                <button className="btn btn-danger" onClick={this.clearAll}>
+                  Limpar
                 </button>
               </div>
             </div>
