@@ -21,7 +21,6 @@ export default class CadastroProdutos extends Component {
     this.setState({
       [nomeCampo]: event.target.value,
     });
-    console.log("eiii");
   };
 
   onSubmit = (event) => {
@@ -35,6 +34,7 @@ export default class CadastroProdutos extends Component {
 
     try {
       this.service.salvar(dadosProduto);
+      this.clearAll();
     } catch (erro) {
       const errors = erro.errors;
       this.setState({
