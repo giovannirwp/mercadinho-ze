@@ -40,6 +40,16 @@ export default class produtosService extends Component {
     return JSON.parse(prod);
   }
 
+  obterIndex = (sku) => {
+    let index = null;
+    this.listagemDeProdutos().forEach((produto, i) => {
+      if(produto.sku === sku) {
+        index = i;
+      }
+    })    
+    return index;
+  }
+
   salvar = (produto) => {
     this.validaCampos(produto);
     
@@ -51,7 +61,14 @@ export default class produtosService extends Component {
       produtosAll = JSON.parse(produtosAll);
     }
 
-    produtosAll.push(produto);
+    const index = this.obterIndex(produto.sku);
+    if(index === null) {
+      produtosAll.push(produto);
+    } else {
+      produtosAll[index] = produto;
+    }
+
+    //produtosAll.push(produto);
 
     localStorage.setItem(CHAVEPROD, JSON.stringify(produtosAll));
   }

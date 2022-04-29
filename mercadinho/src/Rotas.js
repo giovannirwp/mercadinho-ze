@@ -7,7 +7,7 @@ import Home from "./Pages/Home";
 export default function Rotas() {
   return (
     <Switch>
-      <Route exact path="/cadastro-produtos" component={CadastroProdutos} />
+      <Route exact path="/cadastro-produtos/:sku?" component={CadastroProdutos} />
       <Route exact path="/consulta-produtos" component={ConsultaProdutos} />
       <Route exact path="/" component={Home} />
     </Switch>

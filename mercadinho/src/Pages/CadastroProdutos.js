@@ -11,6 +11,7 @@ const stateInitil = {
   fornecedor: "",
   success: false,
   errors: [],
+  atualizado: false
 };
 class CadastroProdutos extends Component {
   state = stateInitil;
@@ -55,6 +56,21 @@ class CadastroProdutos extends Component {
   clearAll = () => {
     this.setState(stateInitil);
   };
+
+  componentDidMount() {
+    const sku = this.props.match.params.sku;
+
+    if (sku) {
+      const resultado = this.service
+        .listagemDeProdutos()
+        .filter((produto) => produto.sku === sku);
+
+        if(resultado.length === 1) {
+          const produtoEncontrado = resultado[0];
+          this.setState({ ...produtoEncontrado, atualizado: true })
+        }
+    }
+  }
 
   render() {
     const { errors, success } = this.state;
