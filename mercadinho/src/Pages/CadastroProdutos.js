@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import produtosService from "../Api/produtosService";
 import "./cadastro.css";
 
@@ -11,7 +12,7 @@ const stateInitil = {
   success: false,
   errors: [],
 };
-export default class CadastroProdutos extends Component {
+class CadastroProdutos extends Component {
   state = stateInitil;
 
   constructor() {
@@ -39,6 +40,7 @@ export default class CadastroProdutos extends Component {
       this.service.salvar(dadosProduto);
       this.clearAll();
       this.setState({ success: true });
+      this.props.history.push(`/consulta-produtos`);
       setTimeout(() => {
         this.setState({ success: false });
       }, 3000);
@@ -155,3 +157,5 @@ export default class CadastroProdutos extends Component {
     );
   }
 }
+
+export default withRouter(CadastroProdutos);
