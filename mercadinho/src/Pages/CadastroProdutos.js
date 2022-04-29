@@ -9,6 +9,7 @@ const stateInitil = {
   preco: 0,
   fornecedor: "",
   success: false,
+  errors: [],
 };
 export default class CadastroProdutos extends Component {
   state = stateInitil;
@@ -37,10 +38,10 @@ export default class CadastroProdutos extends Component {
     try {
       this.service.salvar(dadosProduto);
       this.clearAll();
-      this.setState({ success: true})
+      this.setState({ success: true });
       setTimeout(() => {
-        this.setState({ success: false})
-      }, 3000)
+        this.setState({ success: false });
+      }, 3000);
     } catch (erro) {
       const errors = erro.errors;
       this.setState({
@@ -54,17 +55,28 @@ export default class CadastroProdutos extends Component {
   };
 
   render() {
+    const { errors, success } = this.state;
+    
     return (
       <div>
         <div className="card text-white bg-primary mb-3">
           <div className="card-header">Cadastro do mercadinho do Zé</div>
 
           <div className="card-body card-body-personalid">
-            {this.state.success && (
+            {success && (
               <div className="alert alert-dismissible alert-info">
                 <strong>Show!</strong> Cadastro realizado com sucesso!
               </div>
             )}
+
+            {errors.length > 0 &&
+              errors.map((msg) => {
+                return (
+                  <div className="alert alert-dismissible alert-danger">
+                    <strong>Ocorreu um erro!</strong> {msg}
+                  </div>
+                );
+              })}
             <div className="row">
               <div className="col-md-6">
                 <label htmlFor="sku">SKU</label>
