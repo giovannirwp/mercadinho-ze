@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import produtosService from "../Api/produtosService";
+import "./cadastro.css";
 
 const stateInitil = {
   sku: "",
@@ -58,7 +59,7 @@ export default class CadastroProdutos extends Component {
         <div className="card text-white bg-primary mb-3">
           <div className="card-header">Cadastro do mercadinho do Zé</div>
 
-          <div className="card-body">
+          <div className="card-body card-body-personalid">
             {this.state.success && (
               <div className="alert alert-dismissible alert-info">
                 <strong>Show!</strong> Cadastro realizado com sucesso!
