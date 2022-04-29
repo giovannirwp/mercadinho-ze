@@ -16,7 +16,7 @@ export default class Home extends Component {
           out within the larger container.
         </p>
         <p className="lead">
-          <Link classNam="btn btn-primary btn-lg" to="/cadastro-produtos" role="button">
+          <Link className="btn btn-primary btn-lg" to="/cadastro-produtos" role="button">
             Cadastrar
           </Link>
         </p>

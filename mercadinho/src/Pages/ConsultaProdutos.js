@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router";
 import produtosService from "../Api/produtosService";
 
-export default class ConsultaProdutos extends Component {
+class ConsultaProdutos extends Component {
   state = {
     produtos: [],
   };
@@ -16,6 +17,11 @@ export default class ConsultaProdutos extends Component {
     this.setState({ produtos: produtos });
   }
 
+  edicaoGeral = (sku) => {
+    console.log('sku para edicao', sku);
+    this.props.history.push(`/cadastro-produtos/${sku}`);
+  } 
+
   render() {
     return (
       <table className="table table-hover">
@@ -26,6 +32,7 @@ export default class ConsultaProdutos extends Component {
             <th scope="col">Preço</th>
             <th scope="col">Fornecedor</th>
             <th scope="col">Descrição</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -37,6 +44,10 @@ export default class ConsultaProdutos extends Component {
                 <td>{prod.preco}</td>
                 <td>{prod.fornecedor}</td>
                 <td>{prod.descricao}</td>
+                <td>
+                  <button onClick={() => this.edicaoGeral(prod.sku)} className="btn btn-primary mr-3">Editar</button>
+                  <button className="btn btn-danger">Remover</button>
+                </td>
               </tr>
             );
           })}
@@ -45,3 +56,5 @@ export default class ConsultaProdutos extends Component {
     );
   }
 }
+
+export default withRouter(ConsultaProdutos);
