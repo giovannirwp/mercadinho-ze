@@ -30,7 +30,14 @@ export default class produtosService extends Component {
     if(errors.length > 0){
       throw new ErroValidacao(errors);
     }
+  }
 
+  listagemDeProdutos = () => {
+    const prod = localStorage.getItem(CHAVEPROD);
+    if(!prod) {
+      return [];
+    }
+    return JSON.parse(prod);
   }
 
   salvar = (produto) => {
