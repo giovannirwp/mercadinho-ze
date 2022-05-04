@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router";
 import produtosService from "../Api/produtosService";
+import MessageCadastro from "../Components/Message/MessageCadastro";
 import "./cadastro.css";
 
 const stateInitil = {
@@ -41,9 +42,9 @@ class CadastroProdutos extends Component {
       this.service.salvar(dadosProduto);
       this.clearAll();
       this.setState({ success: true });
-      this.props.history.push(`/consulta-produtos`);
       setTimeout(() => {
         this.setState({ success: false });
+        this.props.history.push(`/consulta-produtos`);
       }, 3000);
     } catch (erro) {
       const errors = erro.errors;
@@ -82,9 +83,7 @@ class CadastroProdutos extends Component {
 
           <div className="card-body card-body-personalid">
             {success && (
-              <div className="alert alert-dismissible alert-info">
-                <strong>Show!</strong> Cadastro realizado com sucesso!
-              </div>
+              <MessageCadastro />
             )}
 
             {errors.length > 0 &&
@@ -102,6 +101,7 @@ class CadastroProdutos extends Component {
                   type="text"
                   name="sku"
                   id="sku"
+                  disabled={this.state.atualizado}
                   value={this.state.sku}
                   onChange={this.handleChange}
                   className="form-control"
