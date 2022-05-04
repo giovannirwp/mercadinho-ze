@@ -20,7 +20,12 @@ class ConsultaProdutos extends Component {
   edicaoGeral = (sku) => {
     console.log('sku para edicao', sku);
     this.props.history.push(`/cadastro-produtos/${sku}`);
-  } 
+  }
+  
+  delete = (sku) => {
+    const prodDelete = this.service.deletar(sku);
+    this.setState({ produtos : prodDelete });
+  }
 
   render() {
     return (
@@ -46,7 +51,7 @@ class ConsultaProdutos extends Component {
                 <td>{prod.descricao}</td>
                 <td>
                   <button onClick={() => this.edicaoGeral(prod.sku)} className="btn btn-primary mr-3">Editar</button>
-                  <button className="btn btn-danger">Remover</button>
+                  <button onClick={() => this.delete(prod.sku)} className="btn btn-danger">Remover</button>
                 </td>
               </tr>
             );
