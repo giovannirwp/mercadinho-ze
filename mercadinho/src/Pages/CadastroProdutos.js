@@ -160,7 +160,7 @@ class CadastroProdutos extends Component {
                   className="btn btn-success mr-3"
                   onClick={this.onSubmit}
                 >
-                  Enviar
+                  {this.state.atualizado ? "Atualizar" : "Salvar"}
                 </button>
                 <button className="btn btn-danger" onClick={this.clearAll}>
                   Limpar
