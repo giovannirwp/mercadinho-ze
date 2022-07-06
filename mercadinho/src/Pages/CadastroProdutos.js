@@ -74,7 +74,7 @@ class CadastroProdutos extends Component {
   }
 
   render() {
-    const { errors, success } = this.state;
+    const { errors, success, sku, nome, preco, fornecedor, descricao } = this.state;
     
     return (
       <div>
@@ -102,7 +102,7 @@ class CadastroProdutos extends Component {
                   name="sku"
                   id="sku"
                   disabled={this.state.atualizado}
-                  value={this.state.sku}
+                  value={sku}
                   onChange={this.handleChange}
                   className="form-control"
                 />
@@ -114,7 +114,7 @@ class CadastroProdutos extends Component {
                   type="text"
                   name="nome"
                   id="nome"
-                  value={this.state.nome}
+                  value={nome}
                   onChange={this.handleChange}
                   className="form-control"
                 />
@@ -126,7 +126,7 @@ class CadastroProdutos extends Component {
                   type="text"
                   name="preco"
                   id="preco"
-                  value={this.state.preco}
+                  value={preco}
                   onChange={this.handleChange}
                   className="form-control"
                 />
@@ -137,7 +137,7 @@ class CadastroProdutos extends Component {
                 <input
                   type="text"
                   name="fornecedor"
-                  value={this.state.fornecedor}
+                  value={fornecedor}
                   onChange={this.handleChange}
                   className="form-control"
                 />
@@ -150,7 +150,7 @@ class CadastroProdutos extends Component {
                   rows="5"
                   name="descricao"
                   id="descricao"
-                  value={this.state.descricao}
+                  value={descricao}
                   onChange={this.handleChange}
                   className="form-control"
                 />

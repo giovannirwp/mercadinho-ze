@@ -28,6 +28,7 @@ class ConsultaProdutos extends Component {
   }
 
   render() {
+    const { produtos } = this.state;
     return (
       <table className="table table-hover">
         <thead>
@@ -41,7 +42,7 @@ class ConsultaProdutos extends Component {
           </tr>
         </thead>
         <tbody>
-          {this.state.produtos.map((prod, index) => {
+          {produtos.map((prod, index) => {
             return (
               <tr key={index}>
                 <th scope="row">{prod.sku}</th>
