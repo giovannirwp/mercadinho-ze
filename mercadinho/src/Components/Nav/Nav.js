@@ -26,6 +26,11 @@ export default class Nav extends Component {
                 Consultas
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/cadastro-fornecedor">
+                  Fornecedor cadastrado
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
