@@ -7,7 +7,7 @@ export default class Nav extends Component {
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
         <Link className="navbar-brand" to="/">
-            Mercadinho do Zé
+            Mercadinho new do Zé
           </Link>
           <div className="collapse navbar-collapse" id="navbarColor02">
             <ul className="navbar-nav me-auto">
